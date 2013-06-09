@@ -1,0 +1,19 @@
+
+  507  mkdir cheftest << create chef base folder.
+  511  vagrant box add cent63 http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.3-x86_64-v20130101.box
+  531  vagrant ssh-config --host melody >> ~/.ssh/config
+  532  ssh melody
+  533  sudo gem install knife-solo
+  537  knife solo init chef-repo
+  542  git init
+  543  git add .
+  545  git commit -m'first commit'
+  549  cd chef-repo/
+  551  knife solo prepare melody
+  554  knife cookbook create httpd -o site-cookbooks
+  556  vi site-cookbooks/httpd/recipes/default.rb 
+  560  vi nodes/melody.json 
+  561  knife solo cook melody
+  564  knife cookbook create base -o site-cookbooks
+  578  knife cookbook site vendor yum -o cookbooks
+  581  knife solo cook melody
