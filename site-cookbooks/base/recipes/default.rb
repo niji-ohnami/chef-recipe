@@ -9,3 +9,8 @@
 service 'iptables' do
 	action [:disable, :stop]
 end
+
+#link '/dev/null' do
+#	to '/etc/udev/rules.d/70-persistent-net.rules'
+#	link_type :symbol
+#end
