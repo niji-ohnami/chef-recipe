@@ -1,6 +1,7 @@
-
   mkdir cheftest << create chef base folder.
   vagrant box add cent63 http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.3-x86_64-v20130101.box
+
+  vagrant box add cent63 https://dl.dropbox.com/u/7225008/Vagrant/CentOS-6.3-x86_64-minimal.box
 
   vagrant ssh-config --host php54 >> C:\Users\nijibox\.ssh\config
   vagrant ssh-config --host melody >> ~/.ssh/config
@@ -15,6 +16,7 @@
   cygiconv-2.dll
 
   knife configure
+  knife cookbook site vendor yum -o cookbooks
   knife solo prepare melody
   knife solo cook melody
   ssh melody
@@ -29,5 +31,4 @@
   556  vi site-cookbooks/httpd/recipes/default.rb 
   560  vi nodes/melody.json 
   564  knife cookbook create base -o site-cookbooks
-  578  knife cookbook site vendor yum -o cookbooks
   581  knife solo cook melody
