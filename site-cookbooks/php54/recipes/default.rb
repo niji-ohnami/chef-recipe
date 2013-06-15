@@ -40,3 +40,7 @@
 		action :install
 	end
 end
+
+cookbook_file '/etc/php.ini' do
+	mode 0644
+end
