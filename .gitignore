@@ -10,7 +10,7 @@
 #       build/      # build/ ディレクトリのすべてのファイルを無視します
 #       doc/*.txt   # doc/notes.txt は無視しますが、doc/server/arch.txt は無視しません
 .vagrant/
-htdocs/
+htdocs/*
 !htdocs/test.html
 !htdocs/phpinfo.html
 
