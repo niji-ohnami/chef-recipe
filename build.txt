@@ -5,15 +5,16 @@
   vagrant ssh-config --host php54 >> C:\Users\nijibox\.ssh\config
   vagrant ssh-config --host melody >> ~/.ssh/config
   
-  gem install knife-solo
-  gem install ffi
-  gem install chef
+  gem install knife-solo --no-rdoc --no-ri
+  gem install ffi --no-rdoc --no-ri
+  gem install chef --no-rdoc --no-ri
 
   https://github.com/thbar/rsync-windows
   rsync.exe
   cygwin1.dll
   cygiconv-2.dll
 
+  knife configure
   knife solo prepare melody
   knife solo cook melody
   ssh melody
