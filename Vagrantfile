@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   config.vm.box = "cent63"
+  config.vm.provision :shell, :inline => "echo started,have fun."
 
   config.vm.define :php54 do |php54|
     php54.vm.network :private_network, ip: "192.168.24.24"
@@ -36,6 +37,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "mysql51"
       chef.add_recipe "php54"
       chef.add_recipe "httpd"
+      chef.add_recipe "phpMyAdmin"
     end
   end
 
