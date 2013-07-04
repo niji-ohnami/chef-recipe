@@ -36,8 +36,8 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "base"
       chef.add_recipe "mysql51"
       chef.add_recipe "php54"
-      chef.add_recipe "httpd"
       chef.add_recipe "phpMyAdmin"
+      chef.add_recipe "httpd"
     end
   end
 
