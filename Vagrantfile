@@ -23,6 +23,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "phpunit"
       chef.add_recipe "httpd"
     end
+    php54.vm.synced_folder "..", "/vagrant"
   end
 
   config.vm.define :mysql51 do |mysql51|
@@ -39,6 +40,7 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "phpMyAdmin"
       chef.add_recipe "httpd"
     end
+    mysql51.vm.synced_folder "..", "/vagrant"
   end
 
   # Every Vagrant virtual environment requires a box to build off of.
