@@ -24,6 +24,13 @@ directory '/home/vagrant/chef/recipe/' do
 	action :create
 end
 
+bash " change timezone to JP" do
+	code <<-EOC
+	 rm -f /etc/localtime
+	 cp -p /usr/share/zoneinfo/Japan /etc/localtime
+	EOC
+end
+
 #link '/dev/null' do
 #	to '/etc/udev/rules.d/70-persistent-net.rules'
 #	link_type :symbol

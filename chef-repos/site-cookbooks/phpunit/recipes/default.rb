@@ -28,6 +28,9 @@ end
 bash " install phpunit main" do
 	code <<-EOC
 		pear install --alldeps phpunit/PHPUnit
+		pear install phpunit/DbUnit
+		pear install phpunit/PHPUnit_Selenium
+		pear install phpunit/PHPUnit_Story
 		touch /home/vagrant/chef/recipe/phpunit/phpunit-install-done.txt
 	EOC
 	creates "/home/vagrant/chef/recipe/phpunit/phpunit-install-done.txt"
