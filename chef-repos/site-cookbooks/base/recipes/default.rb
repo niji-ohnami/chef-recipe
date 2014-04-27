@@ -31,6 +31,15 @@ bash " change timezone to JP" do
 	EOC
 end
 
+yum_package "yum-fastestmirror" do
+  action :install
+end
+
+# *.jp domain only.
+template "/etc/yum/pluginconf.d/fastestmirror.conf" do
+  source "fastestmirror.conf"
+end
+
 #link '/dev/null' do
 #	to '/etc/udev/rules.d/70-persistent-net.rules'
 #	link_type :symbol
