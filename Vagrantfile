@@ -6,41 +6,58 @@ Vagrant.configure("2") do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
-  config.vm.box = "cent63"
-  config.vm.provision :shell, :inline => "echo started,have fun."
+ config.vm.provision :shell, :inline => "echo started,have fun."
 
-  config.vm.define :php54 do |php54|
-    php54.vm.network :private_network, ip: "192.168.24.24"
-    php54.vm.provider :virtualbox do |vb|
+ config.vm.define :php54 do |php54|
+   php54.vm.box = "php54"
+   php54.vm.network :private_network, ip: "192.168.24.24"
+   php54.vm.provider :virtualbox do |vb|
+       vb.customize ["modifyvm",:id, "--memory", 256]
+   end
+   php54.vm.provision :chef_solo do |chef|
+     chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
+     chef.add_recipe "yum::ius"
+     chef.add_recipe "base"
+     chef.add_recipe "phpunit"
+     chef.add_recipe "httpd"
+   end
+   php54.vm.synced_folder ".", "/vagrant"
+ end
+
+# choose DB server mysql 5.1 or mysql 5.5
+
+#  config.vm.define :mysql51 do |mysql51|
+#    mysql51.vm.box = "php54"
+#    mysql51.vm.network :private_network, ip: "192.168.24.25"
+#    mysql51.vm.provider :virtualbox do |vb|
+#        vb.customize ["modifyvm",:id, "--memory", 256]
+#    end
+#    mysql51.vm.provision :chef_solo do |chef|
+#      chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
+#      chef.add_recipe "yum::ius"
+#      chef.add_recipe "base"
+#      chef.add_recipe "mysql51"
+#      chef.add_recipe "phpMyAdmin"
+#      chef.add_recipe "httpd"
+#    end
+#    mysql51.vm.synced_folder ".", "/vagrant"
+#  end
+
+  config.vm.define :mysql55 do |mysql55|
+    mysql55.vm.box = "mysql55"
+    mysql55.vm.network :private_network, ip: "192.168.24.26"
+    mysql55.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm",:id, "--memory", 256]
     end
-    php54.vm.provision :chef_solo do |chef|
+    mysql55.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
       chef.add_recipe "yum::ius"
       chef.add_recipe "base"
-      chef.add_recipe "memcached"
-      chef.add_recipe "php54"
-      chef.add_recipe "phpunit"
-      chef.add_recipe "httpd"
-    end
-    php54.vm.synced_folder ".", "/vagrant"
-  end
-
-  config.vm.define :mysql51 do |mysql51|
-    mysql51.vm.network :private_network, ip: "192.168.24.25"
-    mysql51.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm",:id, "--memory", 256]
-    end
-    mysql51.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
-      chef.add_recipe "yum::ius"
-      chef.add_recipe "base"
-      chef.add_recipe "mysql51"
-      chef.add_recipe "php54"
+      chef.add_recipe "mysql55"
       chef.add_recipe "phpMyAdmin"
       chef.add_recipe "httpd"
     end
-    mysql51.vm.synced_folder ".", "/vagrant"
+    mysql55.vm.synced_folder ".", "/vagrant"
   end
 
   # Every Vagrant virtual environment requires a box to build off of.

@@ -5,6 +5,8 @@
 
   vagrant ssh-config --host php54 >> C:\Users\nijibox\.ssh\config
   vagrant ssh-config --host melody >> ~/.ssh/config
+
+  vagrant ssh-config --host php54 >> ~/.ssh/config
   
   gem install knife-solo --no-rdoc --no-ri
   gem install ffi --no-rdoc --no-ri
