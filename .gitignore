@@ -14,3 +14,8 @@
 # .gitignore ファイル自体は管理したい
 #       ! は、無視の打ち消し、すなわち無視しない
 !.gitignore
+
+
+# Other files and folders
+.DS_Store
+
