@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
        vb.customize ["modifyvm",:id, "--memory", 256]
    end
    php54.vm.provision :chef_solo do |chef|
+     chef.custom_config_path = "Vagrantfile.chef"
      chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
      chef.add_recipe "yum::ius"
      chef.add_recipe "base"
@@ -33,6 +34,7 @@ Vagrant.configure("2") do |config|
 #        vb.customize ["modifyvm",:id, "--memory", 256]
 #    end
 #    mysql51.vm.provision :chef_solo do |chef|
+#      chef.custom_config_path = "Vagrantfile.chef"
 #      chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
 #      chef.add_recipe "yum::ius"
 #      chef.add_recipe "base"
@@ -50,6 +52,7 @@ Vagrant.configure("2") do |config|
         vb.customize ["modifyvm",:id, "--memory", 256]
     end
     mysql55.vm.provision :chef_solo do |chef|
+      chef.custom_config_path = "Vagrantfile.chef"
       chef.cookbooks_path = ["./chef-repos/cookbooks","./chef-repos/site-cookbooks"]
       chef.add_recipe "yum::ius"
       chef.add_recipe "base"
