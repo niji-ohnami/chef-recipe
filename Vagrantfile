@@ -12,7 +12,9 @@ Vagrant.configure("2") do |config|
    php54.vm.box = "php54"
    php54.vm.network :private_network, ip: "192.168.24.24"
    php54.vm.provider :virtualbox do |vb|
-       vb.customize ["modifyvm",:id, "--memory", 256]
+       vb.customize ["modifyvm",:id, "--memory", 512]
+       vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+       vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
    end
    php54.vm.provision :chef_solo do |chef|
      chef.custom_config_path = "Vagrantfile.chef"
@@ -23,6 +25,7 @@ Vagrant.configure("2") do |config|
      chef.add_recipe "httpd"
    end
    php54.vm.synced_folder ".", "/vagrant"
+
  end
 
 # choose DB server mysql 5.1 or mysql 5.5
@@ -31,7 +34,9 @@ Vagrant.configure("2") do |config|
 #    mysql51.vm.box = "php54"
 #    mysql51.vm.network :private_network, ip: "192.168.24.25"
 #    mysql51.vm.provider :virtualbox do |vb|
-#        vb.customize ["modifyvm",:id, "--memory", 256]
+#        vb.customize ["modifyvm",:id, "--memory", 512]
+#        vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+#        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
 #    end
 #    mysql51.vm.provision :chef_solo do |chef|
 #      chef.custom_config_path = "Vagrantfile.chef"
@@ -47,9 +52,11 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :mysql55 do |mysql55|
     mysql55.vm.box = "mysql55"
-    mysql55.vm.network :private_network, ip: "192.168.24.26"
+    mysql55.vm.network :private_network, ip: "192.168.24.25"
     mysql55.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm",:id, "--memory", 256]
+        vb.customize ["modifyvm",:id, "--memory", 512]
+        vb.customize ["modifyvm", :id, "--natdnsproxy1", "off"]
+        vb.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
     end
     mysql55.vm.provision :chef_solo do |chef|
       chef.custom_config_path = "Vagrantfile.chef"
