@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
      chef.add_recipe "yum::ius"
      chef.add_recipe "base"
      chef.add_recipe "phpunit"
+     chef.add_recipe "samba"
      chef.add_recipe "httpd"
    end
    php54.vm.synced_folder ".", "/vagrant"
