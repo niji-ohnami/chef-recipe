@@ -41,14 +41,13 @@ Vagrant.configure("2") do |config|
 #      chef.add_recipe "base"
 #      chef.add_recipe "mysql51"
 #      chef.add_recipe "phpMyAdmin"
-#      chef.add_recipe "httpd"
 #    end
 #    mysql51.vm.synced_folder ".", "/vagrant"
 #  end
 
   config.vm.define :mysql55 do |mysql55|
     mysql55.vm.box = "mysql55"
-    mysql55.vm.network :private_network, ip: "192.168.24.26"
+    mysql55.vm.network :private_network, ip: "192.168.24.25"
     mysql55.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm",:id, "--memory", 256]
     end
@@ -59,7 +58,6 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "base"
       chef.add_recipe "mysql55"
       chef.add_recipe "phpMyAdmin"
-      chef.add_recipe "httpd"
     end
     mysql55.vm.synced_folder ".", "/vagrant"
   end

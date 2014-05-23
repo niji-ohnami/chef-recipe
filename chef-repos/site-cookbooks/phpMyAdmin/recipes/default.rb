@@ -17,3 +17,12 @@ end
 cookbook_file '/etc/httpd/conf.d/phpMyAdmin.conf' do
 	mode 0644
 end
+
+cookbook_file '/etc/httpd/conf/httpd.conf' do
+	mode 0644
+end
+
+service 'httpd' do
+	supports :status => true,:restart => true, :reload => true
+	action [:enable,:start]
+end
