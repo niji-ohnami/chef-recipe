@@ -45,7 +45,6 @@ Vagrant.configure("2") do |config|
 #      chef.add_recipe "base"
 #      chef.add_recipe "mysql51"
 #      chef.add_recipe "phpMyAdmin"
-#      chef.add_recipe "httpd"
 #    end
 #    mysql51.vm.synced_folder ".", "/vagrant"
 #  end
@@ -65,7 +64,6 @@ Vagrant.configure("2") do |config|
       chef.add_recipe "base"
       chef.add_recipe "mysql55"
       chef.add_recipe "phpMyAdmin"
-      chef.add_recipe "httpd"
     end
     mysql55.vm.synced_folder ".", "/vagrant"
   end
