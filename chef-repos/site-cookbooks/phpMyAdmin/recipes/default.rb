@@ -18,6 +18,7 @@ cookbook_file '/etc/httpd/conf.d/phpMyAdmin.conf' do
 	mode 0644
 end
 
+# for phpmyadmin
 cookbook_file '/etc/httpd/conf/httpd.conf' do
 	mode 0644
 end
